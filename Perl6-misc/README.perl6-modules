@@ -1,5 +1,9 @@
 Install with panda:
 
 $ cd <repo>
+
+# may have to do:
+$ perl Mafile.PL
+
 $ make test
 $ panda install . # <== notice the dot (current directory)
