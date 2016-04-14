@@ -1,5 +1,5 @@
-Install with ufo:
+Install with panda:
 
 $ cd <repo>
 $ make test
-$ make install # local user for now
+$ panda install . # <== notice the dot (current directory)
