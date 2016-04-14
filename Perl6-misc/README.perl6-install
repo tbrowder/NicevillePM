@@ -1,0 +1,83 @@
+Installing the rakudo perl6 compiler following instructions here:
+================================================================
+
+  http://rakudo.org/how-to-get-rakudo/
+
+Note that the following will install (or update) ALL code under
+'~/.rakudobrew'.  In some cases, you will have to upgrade by removing
+the ~/.rakudobrew directory and re-install from scratch.
+
+
+1. To install rakudobrew on Linux:
+
+  $ git clone https://github.com/tadzik/rakudobrew ~/.rakudobrew
+  $ echo 'export PATH=~/.rakudobrew/bin:$PATH' >> ~/.bash_aliases
+  $ source ~/.bashrc
+
+  # OR, if the system is set for it
+
+  $ git clone https://github.com/tadzik/rakudobrew $RD
+
+
+2. To install Rakudo and Panda using rakudobrew:
+
+  $ rakudobrew list-available
+  $ rakudobrew build moar <latest released version>  # will update panda also after initial installation
+                                                     # takes about 7 min initially on juvat2 (2016.03)
+  $ rakudobrew build panda                           # takes about 1 min initially on juvat2
+
+  $ rakudobrew build zev
+
+
+3. Finally, install Task::Star (usually updated separately from the
+   Rakudo package). This will install all the modules that are shipped
+   with the Rakudo Star Perl 6 distribution:
+
+  $ panda install Task::Star # takes about 8 min on juvat2
+
+4. Updating to a new version
+
+  # build the new version
+  $ rakudobrew build moar <new version>
+  ....
+
+  # check what is being used
+  $ rakudobrew current
+  Currently running moar-2015.12
+
+  # check available versions  
+  $ rakudobrew versions
+  * moar-2015.12
+    moar-2016.01.1
+    moar-nom
+
+  # switch to using the new version
+  $ rakudobrew switch 2016.01.1
+  $ rakudobrew current
+  Currently running moar-2016.01.1
+
+  # now rebuild and install other tools with the new version
+  $ rakudobrew build panda   # usually upgraded
+  $ panda update
+  $ panda install Task::Star # all available modules
+                             # took about 9 min initially on juvat2
+
+
+  # note the following no longerf needs to be done since it appears
+  # to be installed with Task::Star:
+  $ panda install Linenoise  # for readline in the perl6 REPL
+
+
+Editing perl6.org docs
+======================
+
+The website is at:
+
+
+Some docs are in other repos:
+
+  Perl 5 to 6, Intro for Perl 5 programmers
+    https://github.com/moritz/perlgeek.de/tree/master/other/perl-5-to-6
+
+  Perl 5 to 6 translation guide
+    https://github.com/perl6/doc/blob/master/lib/Language/5to6.pod

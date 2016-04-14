@@ -1,0 +1,16 @@
+To convert Perl 5 to Perl 6 use CPAN package
+
+  Perl::ToPerl6
+  =============
+
+and its converter program
+
+  perlmogrify
+  ===========
+
+Repository
+==========
+
+Use this and NOT the CPAN package:
+
+  https://github.com/drforr/Perl-Mogrify

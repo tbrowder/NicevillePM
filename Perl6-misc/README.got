@@ -1,0 +1,62 @@
+Using 'got' to manage github repos forks
+========================================
+
+CPAN:  App::GitGot  (1.330) as of 2016-04-06)
+
+https://github.com/genehack/app-gitgot.git
+
+for forks:
+
+  got fork https://github.com/somebodies/repo_name
+
+repos forked here:
+
+  got -v fork https://github.com/moritz/perlgeek.de.git
+  got -v fork https://github.com/perl6/doc.git
+  got -v fork https://github.com/perl6/perl6-examples.git
+  ...
+
+Using App::cpanm as root to fix App::GitGot:
+
+  cpanm Net::GitHub@0.72
+
+Using forks on github
+=====================
+
+1. fork an upstream repo on github to my account and establish a local
+   repo:
+
+   $ got fork <upstream URL-upstream-repo-to-fork> # must not exist in my git repo list
+
+   Example URL: https://github.com/perl6/tablets.git
+
+2. configure git to sync my local repo with the original upstream repo:
+
+   $ cd <local repo>
+   $ git remote add upstream <upstream URL>
+
+   verify:
+
+   $ git remote -v
+   origin	git@github.com:tbrowder/perl6-examples.git (fetch)
+   origin	git@github.com:tbrowder/perl6-examples.git (push)
+   upstream	https://github.com/perl6/perl6-examples.git (fetch)
+   upstream	https://github.com/perl6/perl6-examples.git (push)
+
+3. update my local repo with the upstream repo:
+
+   Note: rakudo uses branch 'nom' instead of 'master'.
+   
+   $ cd <local repo>
+   $ git fetch upstream
+   $ git checkout master
+   $ git merge upstream/master
+
+4. push my local changes (including upstream updates)
+
+   Note: rakudo uses branch 'nom' instead of 'master'.
+
+   $ cd <local repo>
+   $ git push origin master # <REMOTENAME> <BRANCHNAME>
+
+   # same as my aliased "gip"
